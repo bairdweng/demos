@@ -1,0 +1,17 @@
+{
+  "name": "temple",
+  "version": "1.0.0",
+  "description": "这是一个模板工程",
+  "main": "index.js",
+  "scripts": {
+    "config": "node ./config/build-entry.js",
+    "debug":"npm run config && node ../bin/bw-service.js debug",
+    "watch":"npm run config && node ../bin/bw-service.js watch develop",
+    "build":"npm run config && node ../bin/bw-service.js build develop"
+  },
+  "devDependencies": {
+    "uppercamelcase": "^3.0.0"
+  },
+  "author": "bairdweng",
+  "license": "ISC"
+}

@@ -1,0 +1,16 @@
+lib/
+node_modules/
+
+# coverage
+coverage/
+!frontend/src/assets/inspector/coverage/
+
+package-lock.json
+
+frontend/node_modules/
+frontend/public/
+frontend/coverage/
+frontend/src/css
+frontend/src/**/*.js
+frontend/src/**/*.map
+frontend/*.log
