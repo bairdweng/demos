@@ -10,12 +10,36 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello World3333")
+        NavigationView {
+            List {
+                Section(header: Text("特殊视图2")) {
+                    NavigationLink(destination: ControllerPage<UIKitController>()) {
+                        PageRow(title: "UIViewController", subTitle: "打开 UIViewController")
+                    }
+                    NavigationLink(destination: ControllerPage<UIKitController>()) {
+                        PageRow(title: "UIViewController", subTitle: "打开 UIViewController")
+                    }
+                }
+            }
+                .listStyle(GroupedListStyle())
+                .navigationBarTitle(Text("Example"), displayMode: .large)
+                .navigationBarItems(trailing: Button(action: {
+                    print("Tap")
+                    insertionSort().start()
+
+                }, label: {
+                    Text("Right").foregroundColor(.orange)
+                    }))
+
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+#if DEBUG
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView().colorScheme(.dark)
+        }
     }
-}
+#endif
+

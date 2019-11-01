@@ -14,6 +14,10 @@
 		993E5BDD23605C5A0088F53E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 993E5BDC23605C5A0088F53E /* Preview Assets.xcassets */; };
 		993E5BE023605C5A0088F53E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 993E5BDE23605C5A0088F53E /* LaunchScreen.storyboard */; };
 		993E5BEA23605CDB0088F53E /* insertionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E5BE923605CDB0088F53E /* insertionSort.swift */; };
+		9991357A236176E9007AA6FF /* ControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99913577236176E9007AA6FF /* ControllerPage.swift */; };
+		9991357B236176E9007AA6FF /* WebViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99913578236176E9007AA6FF /* WebViewPage.swift */; };
+		9991357C236176E9007AA6FF /* UIKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99913579236176E9007AA6FF /* UIKitController.swift */; };
+		9991357E23617724007AA6FF /* PageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9991357D23617724007AA6FF /* PageRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		993E5BDF23605C5A0088F53E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		993E5BE123605C5A0088F53E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		993E5BE923605CDB0088F53E /* insertionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insertionSort.swift; sourceTree = "<group>"; };
+		99913577236176E9007AA6FF /* ControllerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerPage.swift; sourceTree = "<group>"; };
+		99913578236176E9007AA6FF /* WebViewPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewPage.swift; sourceTree = "<group>"; };
+		99913579236176E9007AA6FF /* UIKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitController.swift; sourceTree = "<group>"; };
+		9991357D23617724007AA6FF /* PageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,7 @@
 		993E5BD223605C570088F53E /* algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				99BB71B32361AC330045E2F6 /* View */,
 				993E5BE723605C720088F53E /* Classes */,
 				993E5BD323605C570088F53E /* AppDelegate.swift */,
 				993E5BD523605C570088F53E /* SceneDelegate.swift */,
@@ -81,6 +90,8 @@
 		993E5BE723605C720088F53E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9991357D23617724007AA6FF /* PageRow.swift */,
+				99913576236176E9007AA6FF /* SpecialPage */,
 				993E5BE823605C7B0088F53E /* 插入排序 */,
 			);
 			path = Classes;
@@ -92,6 +103,23 @@
 				993E5BE923605CDB0088F53E /* insertionSort.swift */,
 			);
 			path = "插入排序";
+			sourceTree = "<group>";
+		};
+		99913576236176E9007AA6FF /* SpecialPage */ = {
+			isa = PBXGroup;
+			children = (
+				99913577236176E9007AA6FF /* ControllerPage.swift */,
+				99913578236176E9007AA6FF /* WebViewPage.swift */,
+				99913579236176E9007AA6FF /* UIKitController.swift */,
+			);
+			path = SpecialPage;
+			sourceTree = "<group>";
+		};
+		99BB71B32361AC330045E2F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,8 +195,12 @@
 			files = (
 				993E5BD423605C570088F53E /* AppDelegate.swift in Sources */,
 				993E5BEA23605CDB0088F53E /* insertionSort.swift in Sources */,
+				9991357C236176E9007AA6FF /* UIKitController.swift in Sources */,
 				993E5BD623605C570088F53E /* SceneDelegate.swift in Sources */,
 				993E5BD823605C570088F53E /* ContentView.swift in Sources */,
+				9991357E23617724007AA6FF /* PageRow.swift in Sources */,
+				9991357B236176E9007AA6FF /* WebViewPage.swift in Sources */,
+				9991357A236176E9007AA6FF /* ControllerPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

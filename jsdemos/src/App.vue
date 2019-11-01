@@ -31,7 +31,18 @@ export default {
 	methods: {
 		clickOntheTap(item) {
 			// console.log(item);
-			item.unt();
+			// item.unt();
+			let item1 = {
+				aa: "aa"
+			};
+			let item2 = {
+				bb: item1.aa
+			};
+			console.log(item2.bb);
+			item1 = null;
+			
+			console.log(item2.bb);
+			
 		}
 	}
 };
