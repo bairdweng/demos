@@ -1,0 +1,218 @@
+scalar Upload
+
+extend type Query {
+    """服务人员详情"""
+    CommonlyUsedPersonnelDetail(id: Int!): CommonlyUsedPersonnelInfo! @isAuthenticated
+    """服务人员绩效详情"""
+    AchievementsDetail(id: String!, page: Int, pageSize: Int): AchievementsPagination @isAuthenticated
+    """服务人员列表页"""
+    CommonlyUsedPersonnelLists(page: Int = 1, pageSize: Int = 10, id: Int, name: String, mobile: String, createdAtBegin: Int, createdAtEnd: Int): CommonlyUsedPersonnelPagination @isAuthenticated
+    """获取签约协议"""
+    getTemplateDownload(workId: Int!): String! @isAuthenticated
+}
+
+extend type Mutation {
+    """创建服务人员"""
+    createCommonlyUsedPersonnel(newCommonlyUsedPersonnelData: NewCommonlyUsedPersonnelInput!): CommonlyUsedPersonnel @isAuthenticated
+    """更新服务人员"""
+    updateCommonlyUsedPersonnel(id: Int, updateCommonlyUsedPersonnelData: UpdateCommonlyUsedPersonnelInput!): CommonlyUsedPersonnel! @isAuthenticated
+    """删除服务人员"""
+    deleteCommonlyUsedPersonnel(id: Int!): Boolean! @isAuthenticated
+    """签约"""
+    signingAndCreate(signData: SignInput!): SignRspData @isAuthenticated
+    """导入服务人员"""
+    importUser(req: [UploadFile!]!, companyName: String!): importStatus! @isAuthenticated
+    """签约查询"""
+    signQuery(workId: Int!): SignRspData! @isAuthenticated
+}
+
+type importStatus {
+    id: String!
+    Status: Boolean!
+    Total: Int!
+}
+
+input UploadFile {
+    id: Int!
+    file: Upload!
+}
+
+input NewCommonlyUsedPersonnelInput {
+    """app_id"""
+    appId: String!
+    """姓名"""
+    name: String!
+    """身份证号码"""
+    cardNo: String!
+    """银行卡号"""
+    bankNo: String
+    """手机"""
+    mobile: String!
+    """头像"""
+    avatar: String
+    """学历"""
+    education: String
+    """地址"""
+    address: String
+    """备注"""
+    remark: String
+    """公司名"""
+    companyName: String!
+}
+
+input UpdateCommonlyUsedPersonnelInput {
+    """用户id"""
+    userId: String
+    """姓名"""
+    name: String
+    """头像"""
+    avatar: String
+    """手机号码"""
+    mobile: String
+    """银行卡号"""
+    bankNo: String
+    """学历"""
+    education: String
+    """地点"""
+    address: String
+    """备注"""
+    remark: String
+    """签约时间"""
+    signTime: Int
+}
+
+input SignInput{
+    """work_id"""
+    WorkId: Int!
+    """手机号"""
+    Mobile: String
+}
+
+type CommonlyUsedPersonnelInfo{
+    id: Int!
+    """姓名"""
+    name: String!
+    """头像"""
+    avatar: String
+    """手机号码"""
+    mobile: String!
+    """身份证号码"""
+    cardNo: String!
+    """银行卡号"""
+    bankNo: String
+    """学历"""
+    education: String
+    """地点"""
+    address: String
+    """备注"""
+    remark: String
+    """签约时间"""
+    signTime: Int
+    """甲方"""
+    partyA: [PartyA]
+    """乙方"""
+    partyB: String
+}
+
+type PartyA{
+    companyName: String
+    signTime: String
+}
+
+type AchievementsPagination{
+    totalItem:Int!
+    totalPage:Int!
+    items:[AchievementsInfo!]!
+}
+
+type AchievementsInfo{
+    id: Int!
+    """任务ID"""
+    workId: Int
+    """任务"""
+    positionTitle: String
+    """类型"""
+    positionType: String
+    """状态"""
+    status: Int
+    """发放次数"""
+    giveTimes: Int
+    """加入时间"""
+    joinTimes: Int
+}
+
+type CommonlyUsedPersonnelPagination{
+    totalItem:Int!
+    totalPage:Int!
+    items:[CommonlyUsedPersonnelList!]!
+}
+
+type CommonlyUsedPersonnelList{
+    id: Int!
+    """用户Id"""
+    userId: String
+    """姓名"""
+    name: String
+    """头像"""
+    avatar: String
+    """手机号"""
+    mobile: String
+    """地点"""
+    address: String
+    """任务"""
+    position: Int
+    """绩效"""
+    achievement: Int
+    """备注"""
+    remark: String
+    """签约时间"""
+    signTime: Int
+    """创建时间"""
+    createdAt: Int
+}
+
+type CommonlyUsedPersonnel {
+    id: Int!
+    company_id: Int!
+    app_id: String!
+    name: String!
+    card_no: String!
+    bank_no: String
+    user_id: String!
+    avatar: String
+    mobile: String!
+    education: String
+    address: String
+    remark: String
+    signing_time: Int
+    created_at: Date!
+    updated_at: Date!
+    deleted_at: Int
+}
+
+type SignRspData {
+    """签约状态  SIGNING： 签约中, CLOSED：签约完成"""
+    state:  String
+    """签约描述"""
+    StateDesc: String
+    """接受状态  ACCEPTED： 接受签约"""
+    resultCode: String
+    """接受信息"""
+    ResultMessage: String
+    """手动签约跳转地址 先用c， 为空， 判断b,b不为空则用B，bc为空是自动签约"""
+    PartybSignUrl: String
+    PartycSignUrl: String
+
+    ExtrSystemId: String
+    previewUrl: String
+}
+
+
+type Message {
+    text: String!
+}
+
+
+extend type Subscription {
+    importError(id: String!): Message!
+}

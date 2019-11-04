@@ -1,0 +1,27 @@
+# .gqlgen.yml example
+#
+# Refer to https://gqlgen.com/config/
+# for detailed .gqlgen.yml documentation.
+
+schema:
+- schema/*.graphql
+exec:
+  filename: schema/generated.go
+model:
+  filename: model/models_gen.go
+  package: model
+resolver:
+  filename: resolver/resolver_gen.go
+  type: Resolver
+  package: resolver
+#models:
+#  CommonlyUsedPersonnel:
+#    model: iQuest/library/prisma.CommonlyUsedPersonnel
+autobind: []
+# directives:
+#   deprecated:
+#     skip_runtime: true
+#   include:
+#     skip_runtime: true
+#   skip:
+#     skip_runtime: true

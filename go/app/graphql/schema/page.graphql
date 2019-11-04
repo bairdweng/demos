@@ -1,0 +1,7 @@
+
+type PageInfo {
+    # 总共多扫页
+    totalPage: Int!
+    # 总共多少数据
+    totalItem: Int!
+}

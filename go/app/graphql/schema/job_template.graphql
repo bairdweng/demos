@@ -1,0 +1,120 @@
+extend type Mutation {
+    """添加岗位模板"""
+    createJobTemplate(data: CreateJobTemplateInput!, isAuditPass: Boolean):JobTemplate! @isAuthenticated
+    """岗位模板审核回调"""
+    auditJobCallback(data: AuditJobTemplateInput!): JobTemplate! @isAuthenticated
+    """删除岗位模板"""
+    deleteJobTemplate(id: Int!): Boolean! @isAuthenticated
+}
+
+extend type Query {
+    """岗位模板详情"""
+    jobTemplate(id: Int!):JobTemplateInfo! @isAuthenticated
+    """岗位模板列表"""
+    jobTemplates(pageNumber: Int!, pageItem: Int! = 10, search: SearchJobTemplateInput): JobTemplatePagination! @isAuthenticated
+}
+
+type JobTemplateInfo {
+    Base: Work
+    JobDetail: Job
+    Template: JobTemplate!
+    MediaUrls: [String]
+}
+
+
+input CreateJobTemplateInput {
+    """岗位名字(标题)"""
+    name: String!
+    """岗位描述"""
+    requirement: String!
+    """结算规则"""
+    settlementRule: String!
+    """服务类目id"""
+    serviceTypeId: Int!
+    """服务类目名称"""
+    serviceTypeName: String!
+    """服务商id"""
+    serviceCompanyId: Int!
+    """服务商名称"""
+    serviceCompanyName: String!
+    kpiTemplateUrl: String
+    appid: String
+    """客户公司id"""
+    companyId: Int!
+    """客户公司名称"""
+    companyName: String!
+    """岗位签约模板id"""
+    signTemplateId: Int
+    """备注"""
+    remark: String
+}
+
+
+input AuditJobTemplateInput {
+    """岗位模板id"""
+    JobTemplateId: Int!
+    """服务商id"""
+    serviceCompanyId: Int!
+    """服务商名称"""
+    serviceCompanyName: String!
+    appid: String!
+    """客户公司id"""
+    companyId: Int!
+    """客户公司名称"""
+    companyName: String!
+    """岗位签约模板id"""
+    signTemplateId: Int!
+    """岗位模板审核是否通过"""
+    isAuditPass: Boolean!
+}
+
+type JobTemplate {
+    id: Int!
+    """岗位名字(标题)"""
+    name: String!
+    """岗位描述"""
+    requirement: String!
+    """服务类目id"""
+    serviceTypeId: Int!
+    """服务类目名称"""
+    serviceTypeName: String
+    """服务商id"""
+    serviceCompanyId: Int
+    """服务商名称"""
+    serviceCompanyName: String
+    """结算规则"""
+    settlementRule: String!
+    kpiTemplateUrl: String
+    appid: String
+    """客户公司id"""
+    companyId: Int
+    """客户公司名称"""
+    companyName: String
+    """岗位签约模板id"""
+    signTemplateId: Int
+    """审核结果  0待审核, 1 通过, 2 拒绝 ,  3.已失效(合同过期), 4 (已审核,合同生效期在未来)未生效,"""
+    isEnable: Int
+    """审核意见"""
+    remark: String
+    """合同编号"""
+    contractNo: String!
+    """合同开始日期"""
+    contractStartDate: Int
+    """合同结束日期"""
+    contractEndDate: Int
+    createdAt: Int
+}
+
+"""搜索岗位模板条件体"""
+input SearchJobTemplateInput {
+    id: Int
+    """标题"""
+    name: String
+    """服务类目id"""
+    serviceTypeId: Int
+}
+
+type JobTemplatePagination {
+    pageInfo: PageInfo!
+    items: [JobTemplate!]!
+}

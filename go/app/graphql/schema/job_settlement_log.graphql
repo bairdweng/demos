@@ -1,0 +1,133 @@
+extend type Mutation {
+    """创建结算记录"""
+    createJobSettlementLogs(data: [CreateJobSettlementLogInput!]!):[JobSettlementLog!]! @isAuthenticated
+    """确认结算"""
+    confirmSettlement(settlementId: Int!):Boolean! @isAuthenticated
+    """更新结算记录"""
+    updateJobSettlementLog(data: UpdateJobSettlementLogInput!):JobSettlementLog! @isAuthenticated
+}
+
+extend type Query {
+    """结算记录详情"""
+    jobSettlementLogs(pageNumber: Int!, pageItem: Int! = 10, workId: Int!, userId: String!):JobSettlementLogsPagination! @isAuthenticated
+    """结算总表列表"""
+    jobSettlements(pageNumber: Int!, pageItem: Int! = 10, workId: Int,batchID:String,name:String,createdBeginAt:String,createdEndAt:String,isToBeConfirm:Boolean):JobSettlementsPagination! @isAuthenticated
+}
+
+
+"""更新结算记录条件"""
+input UpdateJobSettlementLogInput {
+    id: Int!
+    """岗位WorkID"""
+    workId: Int!
+    """参与记录ID"""
+    memberId: Int!
+    """参加者用户ID"""
+    userId: String!
+    """金额"""
+    amount: Float!
+    """文件路径"""
+    file: String!
+}
+
+
+"""创建结算记录条件"""
+input CreateJobSettlementLogInput {
+    """岗位WorkID"""
+    workId: Int!
+    """参与记录ID"""
+    memberId: Int!
+    """参加者用户ID"""
+    userId: String!
+    """金额"""
+    amount: Float!
+    """文件路径"""
+    file: String!
+}
+
+"""结算记录"""
+type JobSettlementLog {
+    """记录ID"""
+    id: Int!
+    """岗位WorkID"""
+    workId: Int!
+    """参与记录ID"""
+    memberId: Int!
+    """参加者用户ID"""
+    userId: String!
+    """流水号"""
+    sn: String!
+    """金额"""
+    amount: Float!
+    """文件路径"""
+    file: String!
+    """状态0未确认/1已确认"""
+    status: Int!
+    """用户确认时间"""
+    confirmAt: Int
+    """创建时间"""
+    createdAt: Int!
+    """更新时间"""
+    updatedAt: Int!
+    """mark"""
+    mark:String
+}
+
+"""分页数据"""
+type JobSettlementLogsPagination {
+    """分页"""
+    pageInfo: PageInfo!
+    """数据"""
+    items: [JobSettlementLog!]!
+}
+
+"""绩效总表分页数据"""
+type JobSettlementsPagination {
+    """分页"""
+    pageInfo: PageInfo!
+    """数据"""
+    items: [JobSettlements!]!
+}
+
+type JobSettlements{
+    id:Int!
+    batch_id:String!
+    work_id:Int!
+    amount:Float!
+    settle_count:Int!
+    createdAt:Int!
+    name:String!
+    company_name:String!
+}
+
+type SettlementList{
+    key:String!
+    success:[JobSettlementRecord]
+    error:[JobSettlementRecord]
+}
+
+"""结算记录"""
+type JobSettlementRecord {
+    """记录ID"""
+    id: Int!
+    """岗位WorkID"""
+    workId: Int!
+    """姓名"""
+    name: String!
+    """身份证"""
+    idCard: String!
+    """金额"""
+    amount: Float!
+    """文件路径"""
+    file: String!
+    """创建时间"""
+    createdAt: Int!
+    """更新时间"""
+    updatedAt: Int!
+    """备注"""
+    mark:String
+    """用户id"""
+    userId:String
+    """参与记录id"""
+    memberId:Int
+}

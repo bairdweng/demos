@@ -1,0 +1,17 @@
+extend type Mutation {
+    userVerified(verifiedData: VerifiedInput!): Boolean! @isAuthenticated
+}
+
+input VerifiedInput {
+    idCardFront: String!
+    idCardBack: String!
+    idCardNo: String!
+    bankCardNo: String!
+    name: String!
+    mobile: String
+}
+
+
+
+
+

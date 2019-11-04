@@ -1,0 +1,61 @@
+extend type Query {
+	"""简历类别"""
+	getResumeCategory(workId: Int!): [CategoryType]!  @isAuthenticated
+
+	"""根据类别获取简历选项"""
+	getResumeByCategory(categoryId: Int!,belongID: Int!): [ResumeType]!  @isAuthenticated
+
+    """获取任务人员简历"""
+	GetWorkUserResume(workId: Int!,userId: String!): [CategoryType]  @isAuthenticated
+
+    """是否需要填写简历"""
+	isNeedResume(workId: Int!):Boolean  @isAuthenticated
+
+
+}
+
+extend type Mutation {
+	"""创建用户简历"""
+	createUserResume(categoryInput: [CategoryInput!]!,workId: Int!): Boolean  @isAuthenticated
+}
+
+
+type CategoryType{
+    """类别id"""
+	id: Int!
+	"""类别名称"""
+	name: String!
+	"""1为单选，2为多选"""
+	type: Int!
+	"""已选中简历"""
+	resume: [ResumeType]!
+}
+
+type ResumeType {
+    """简历选项id"""
+	id: Int!
+	"""简历选项名称"""
+	name: String!
+	"""简历选项是否选中"""
+	isHas: Int!
+}
+
+input CategoryInput{
+    """类别id"""
+	id: Int!
+	"""类别名称"""
+	name: String!
+	"""1为单选，2为多选"""
+	type: Int
+	"""已选中简历"""
+	resume: [ResumeInput]!
+}
+
+input ResumeInput {
+    """简历选项id"""
+	id: Int!
+	"""简历选项名称"""
+	name: String!
+	"""简历选项是否选中"""
+    isHas: Int
+}

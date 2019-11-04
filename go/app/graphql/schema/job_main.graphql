@@ -1,0 +1,117 @@
+extend type Mutation {
+	"""创建岗位"""
+	createJob(data: NewJobInput!): JobInfo! @isAuthenticated
+	#addT(data: AddTInput!): JobT!
+	"""更新岗位"""
+	updateJob(data: UpdateJobInput): Job! @isAuthenticated
+}
+
+extend type Query {
+	"""岗位列表"""
+	jobs(pageNumber: Int!, pageItem: Int! = 10, search: SearchJobInput): JobPagination! @isAuthenticated
+	"""岗位参与人员列表"""
+	jobMembers(ids: [Int!], workId:Int!):[JobMember!]! @isAuthenticated
+
+}
+
+
+input NewJobInput {
+	appid: String!
+	"""客户公司id"""
+	companyId: Int!
+	"""客户公司名称"""
+	companyName: String!
+	userId: Int
+	"""服务类目id"""
+	serviceTypeID: Int!
+	"""服务类目名称"""
+	serviceTypeNmae: String!
+	"""服务商id"""
+	serviceCompanyId: Int!
+	"""服务商名称"""
+	serviceCompanyName: String!
+	"""媒体类型: 1: 视频任务，2图片任务，3文字任务"""
+	type: Int!
+	"""任务封面: 用于展示 / im, 文件服务url, 文字任务可不传"""
+	mediaCoverUrl: String
+	"""媒体地址: 文件服务地址数组 例子 ["url1", "url2"], 文字任务可不传 """
+	mediaUrls: [String]
+	"""岗位名字(标题)"""
+	name: String!
+	"""岗位描述"""
+	requirement: String!
+	"""结算规则"""
+	settlementRule: String!
+	"""任务类型: 0啥都没, 1预付, 2后支付"""
+	payType: Int
+	"""任务招募截止时间"""
+	endAt: Int
+	"""单次任务赏金最小值"""
+	singleRewardMin: Float!
+	"""单次任务赏金最大值"""
+	singleRewardMax: Float!
+	"""任务模式: 1公开0私密, 默认公开"""
+	isPublic: Int!
+	"""邀请人员id数组 例子: [1024, 2048, 5096] """
+	inviteIds: [String!]
+	#isNeedProof: Int!
+	"""# 凭证类型: 1视频 / 图片, 2其他"""
+	proofType: Int!
+	"""凭证描述: 上传凭证页面展示描述"""
+	proofDescription: String
+	"""岗位模板id"""
+	templateId: Int
+	profileId: Int!
+	"""合同编号"""
+	contractNo: String!
+	"""合同开始日期"""
+	contractStartDate: Int!
+	"""合同结束日期"""
+	contractEndDate: Int!
+	"""简历选项"""
+	resume: String
+}
+
+input CommonInput {
+	appid: String!
+	companyId: Int!
+	userId: Int
+	serviceTypeID: Int!
+	type: Int!
+	mediaCoverUrl: String
+	mediaUrls: String
+	name: String!
+	requirement: String!
+	settlementRule: String!
+	payType: Int
+}
+
+
+
+"""岗位搜索条件体"""
+input SearchJobInput {
+	"""开始时间"""
+	beign: Int
+	"""结束时间"""
+	end: Int
+	id: Int
+	"""标题"""
+	name: String
+	"""状态"""
+	status: Int
+	"""服务类目id"""
+	serviceTypeId: Int
+}
+
+"""更新岗位"""
+input UpdateJobInput {
+	workId: Int!
+	"""备注"""
+	#目前只有remark
+	remark: String!
+}
+
+type JobPagination {
+	pageInfo: PageInfo!
+	items: [JobInfo!]!
+}
