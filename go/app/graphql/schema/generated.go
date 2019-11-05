@@ -23690,7 +23690,7 @@ func (ec *executionContext) marshalNJobInfo2ᚕᚖiQuestᚋappᚋgraphqlᚋmodel
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNJobInfo2ᚖiQuestᚋappᚋgraphqlᚋmodelᚐJobInfo(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobInfo2ᚖiQuestᚋappᚋgraphqlᚋmodelᚐJobInfo(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -23745,7 +23745,7 @@ func (ec *executionContext) marshalNJobMember2ᚕᚖiQuestᚋappᚋgraphqlᚋmod
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNJobMember2ᚖiQuestᚋappᚋgraphqlᚋmodelᚐJobMember(ctx, sel, v[i])
+			ret[i] = ec.marshalOJobMember2ᚖiQuestᚋappᚋgraphqlᚋmodelᚐJobMember(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)

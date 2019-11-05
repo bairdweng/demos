@@ -2,17 +2,15 @@ package graphql
 
 import (
 	"context"
-
 	"iQuest/app/graphql/directive"
-
-	// "iQuest/app/graphql/resolver"
+	"iQuest/app/graphql/prisma"
+	"iQuest/app/graphql/resolver"
+	"iQuest/app/graphql/schema"
+	session "iQuest/app/model/user"
+	"iQuest/config"
 
 	"github.com/99designs/gqlgen/handler"
 	"github.com/gin-gonic/gin"
-
-	"iQuest/app/graphql/prisma"
-	"iQuest/app/graphql/schema"
-	"iQuest/config"
 )
 
 type Service struct {
@@ -29,11 +27,10 @@ func Handler() gin.HandlerFunc {
 	})
 
 	Server.Prisma = client
-
 	c := schema.Config{
-		// Resolvers: &resolver.Resolver{
-		// 	Prisma: client,
-		// },
+		Resolvers: &resolver.Resolver{
+			Prisma: client,
+		},
 	}
 	c.Directives.IsAuthenticated = directive.IsAuthenticated
 
@@ -48,15 +45,26 @@ func Handler() gin.HandlerFunc {
 	// 只需要通过Gin简单封装即可
 	return func(c *gin.Context) {
 		if config.Viper.GetBool("DEBUG") {
-			// debugUser(c)
+			debugUser(c)
 		}
 
 		ginCtx := context.WithValue(c.Request.Context(), "ginContext", c)
 		c.Request = c.Request.WithContext(ginCtx)
 
-		print("123123")
 		h.ServeHTTP(c.Writer, c.Request)
 	}
+}
+
+func debugUser(c *gin.Context) *gin.Context {
+	user := session.SessionUser{
+		UserID:    44737,
+		UserName:  "陈秋会",
+		CompanyID: 10001489,
+		OpenID:    "openid",
+	}
+	ctx := context.WithValue(c.Request.Context(), "user", user)
+	c.Request = c.Request.WithContext(ctx)
+	return c
 }
 
 // Playground GraphQL Playground
