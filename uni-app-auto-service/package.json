@@ -1,0 +1,48 @@
+{
+  "name": "ayg-uni-app-auto-package",
+  "version": "1.1.0",
+  "description": "",
+  "bin": {
+    "auto": "./bin/auto-cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node ./bin/auto-cli.js run",
+    "buildserve": "npm run build && node ./lib/service/index.ts",
+    "serve": "nodemon -w *.*.ts --exec ts-node ./src/service/index.ts"
+  },
+  "author": "bairdweng@aiyuangong.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "uni-app",
+    ""
+  ],
+  "dependencies": {
+    "commander": "^2.20.0",
+    "download-git-repo": "^2.0.0",
+    "fs-extra": "^8.1.0",
+    "validate-npm-package-name": "^3.0.0",
+    "chalk": "^2.4.2",
+    "typescript": "^3.5.2",
+    "@types/fs-extra": "^8.0.0",
+    "tslint": "^5.18.0",
+    "colors": "^1.3.3",
+    "ora": "^3.4.0",
+    "@nestjs/common": "~2.*",
+    "@nestjs/core": "~2.*",
+    "@nestjs/microservices": "~2.*",
+    "@nestjs/websockets": "~2.*",
+    "body-parser": "^1.17.1",
+    "@types/node": "^12.0.12",
+    "cors": "^2.8.2",
+    "jsonwebtoken": "^7.3.0",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.4.0",
+    "sqlite3": "^4.1.0",
+    "uuid": "^3.0.1"
+  }
+}

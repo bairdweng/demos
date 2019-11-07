@@ -18,6 +18,7 @@
     "@nestjs/microservices": "~2.*",
     "@nestjs/websockets": "~2.*",
     "body-parser": "^1.17.1",
+    "@types/node": "^12.0.12",
     "cors": "^2.8.2",
     "jsonwebtoken": "^7.3.0",
     "reflect-metadata": "^0.1.10",
