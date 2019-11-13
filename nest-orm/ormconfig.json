@@ -1,0 +1,19 @@
+{
+  "name": "default",
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "0000",
+  "database": "ayg_uniapp_info",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/service/entitys/*.ts"
+  ],
+  "subscribers": [],
+  "migrations": [],
+  "cli": {
+    "entitiesDir": "src/service/entitys"
+  }
+}

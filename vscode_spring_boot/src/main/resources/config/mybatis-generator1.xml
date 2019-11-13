@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+  <context id="MySql" defaultModelType="flat" targetRuntime="MyBatis3Simple">
+    <!-- 为模型生成序列化方法-->
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+    <!-- 为生成的Java模型创建一个toString方法 -->
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+    <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/fxx_edu" userId="root" password="0000" />
+
+    <javaModelGenerator targetPackage="com.edu.admin.dao" targetProject="src/main/java"></javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"></sqlMapGenerator>
+
+    <javaClientGenerator targetPackage="com.edu.admin.mapper" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
+
+
+    <table schema="mybatis" tableName="fx_user"></table>
+
+
+  </context>
+
+</generatorConfiguration>

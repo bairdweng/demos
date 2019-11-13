@@ -1,0 +1,40 @@
+ 
+# 无法导出ipa，ruby有问题，需要升级
+default_platform :ios
+
+
+private_lane:set_keychain_name do
+   create_keychain(
+      name: "KeychainName",
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true,
+      password: "0000"
+    )
+end   
+
+
+# 导入证书
+private_lane:import_certificates_for_actions do 
+   import_certificate(
+      certificate_path: "/Users/baird/Desktop/HeMo/uniapp-auto-package-service/platforms/ios/fastlaneDemo/fastlane/profile/dev_dis.p12",
+      certificate_password: '0000',
+      keychain_name:"KeychainName"
+      # keychain_name: ENV["MATCH_KEYCHAIN_NAME"] || "" # MATCH_KEYCHAIN_NAME created by setup_ci action
+   )
+   install_provisioning_profile(path: "/Users/baird/Desktop/HeMo/uniapp-auto-package-service/platforms/ios/fastlaneDemo/fastlane/profile/ayg_dev.mobileprovision")    
+end 
+
+       
+lane :inHouse do 
+set_keychain_name
+import_certificates_for_actions 
+gym(scheme: "fastlaneDemo",
+   clean:true,
+   # silent:true,
+   export_method:"development",
+   output_directory:"./fastlane/ipas",
+   output_name:('aaa')
+   )  
+end

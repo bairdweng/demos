@@ -2,25 +2,25 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-
-  <context id="MySql" defaultModelType="flat" targetRuntime="MyBatis3Simple">
-
+  <!-- <properties resource="generator.properties" /> -->
+  <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+    <!-- 为模型生成序列化方法-->
     <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+    <!-- 为生成的Java模型创建一个toString方法 -->
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
     <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/fxx_edu" userId="root" password="jiangye089" />
 
-    <javaModelGenerator targetPackage="com.example.demo.dao" targetProject="src/main/java">
-      <property name="immutable" value="false" />
-      <!-- 该属性只对MyBatis3有效，如果true就会使用构造方法入参，如果false就会使用setter方式。默认为fals -->
-      <property name="constructorBased" value="false" />
-    </javaModelGenerator>
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/fxx_edu" userId="root" password="0000" />
+
+    <javaModelGenerator targetPackage="com.edu.admin.dao" targetProject="src/main/java"></javaModelGenerator>
 
     <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"></sqlMapGenerator>
 
-    <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
+    <javaClientGenerator targetPackage="com.edu.admin.mapper" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
 
     <table tableName="fx_user">
-      <!-- <property name="modelOnly" value="false" /> -->
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
     </table>
 
   </context>

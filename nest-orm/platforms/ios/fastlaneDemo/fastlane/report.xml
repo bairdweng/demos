@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.009294">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: Switch to set_keychain_name lane" time="0.002054">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: create_keychain" time="0.10031">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: Switch to import_certificates_for_actions lane" time="0.001748">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: import_certificate" time="0.120139">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: install_provisioning_profile" time="0.11448">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: gym" time="57.594384">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
