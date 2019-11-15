@@ -35,7 +35,7 @@ mybatis:
     - classpath:mapper/*.xml
     - classpath*:com/**/mapper/*.xml
   # 自动扫描
-  type-aliases-package: com.edu.admin.dao
+  type-aliases-package: com.edu.admin.*
   
 
 jwt:

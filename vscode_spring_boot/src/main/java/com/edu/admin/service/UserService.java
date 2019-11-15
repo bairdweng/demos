@@ -3,8 +3,8 @@ package com.edu.admin.service;
 import com.edu.admin.common.CommonResult;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 public interface UserService {
   // 用户注册
   @Transactional

@@ -28,7 +28,7 @@ public class SwaggerConfig {
     
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Fast 疾速开发  RESTful APIs")
+            .title("Fast 疾速开发  RESTful APIs333")
             .description("快速上手,快速开发,快速交接")
             .contact(new Contact("geYang", "https://my.oschina.net/u/3681868/home", "572119197@qq.com"))
             .version("1.0.0")

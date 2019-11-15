@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
           details.getAuthorities());
       SecurityContextHolder.getContext().setAuthentication(authentication);
       Map<String, Object> tokenMap = new HashMap<>();
-      
+
       // mmp.put("key", "value");
       tokenMap.put("token", this.getToken(username));
       // 这里可能需要生成token。
