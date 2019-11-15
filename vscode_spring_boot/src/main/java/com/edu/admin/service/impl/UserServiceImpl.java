@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.naming.AuthenticationException;
-
 import com.edu.admin.common.CommonResult;
 import com.edu.admin.common.JwtTokenUtil;
 import com.edu.admin.dao.FxUser;
@@ -63,6 +61,7 @@ public class UserServiceImpl implements UserService {
           details.getAuthorities());
       SecurityContextHolder.getContext().setAuthentication(authentication);
       Map<String, Object> tokenMap = new HashMap<>();
+      
       // mmp.put("key", "value");
       tokenMap.put("token", this.getToken(username));
       // 这里可能需要生成token。

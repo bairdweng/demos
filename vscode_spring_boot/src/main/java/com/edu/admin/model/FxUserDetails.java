@@ -10,6 +10,10 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class FxUserDetails implements UserDetails {
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
   private FxUser user;
 
   public FxUserDetails(FxUser details) {

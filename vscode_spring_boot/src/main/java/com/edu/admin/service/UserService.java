@@ -5,8 +5,6 @@ import com.edu.admin.common.CommonResult;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.hutool.core.lang.Dict;
-
 public interface UserService {
   // 用户注册
   @Transactional
